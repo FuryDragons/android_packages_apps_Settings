@@ -25,5 +25,5 @@
            android:entries="@array/immersive_recents_entries"
            android:entryValues="@array/immersive_recents_values"
            android:persistent="false" />
-		   
+
 </PreferenceScreen>

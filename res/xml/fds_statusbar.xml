@@ -69,5 +69,10 @@
         android:title="@string/disable_immersive_message_title"
         android:summary="@string/disable_immersive_message_summary"
         android:persistent="false" />
+		
+    <PreferenceScreen
+           android:key="network_traffic_settings"
+           android:title="@string/network_traffic_title"
+           android:fragment="com.android.settings.fds.NetworkTrafficSettings" />
 			
 </PreferenceScreen>
