@@ -172,21 +172,5 @@
 
     <!-- Description of setting that controls gesture to open camera by double tapping the power button [CHAR LIMIT=NONE] -->
     <string name="camera_double_tap_power_gesture_desc">Quickly open camera without unlocking your screen</string>
-	
-	<!-- Color Picker -->
-    <string name="dialog_color_picker">Color Picker</string>
-    <string name="press_color_to_apply">Press on color below to apply</string>
-    <string name="arrow_right">→</string>
-    <string name="arrow_down">↓</string>
-    <string name="hex">Hex:</string>
-    <string name="hex_hint">#ff000000</string>
-    <string name="set">Set</string>
-    <string name="color_default">Default</string>
-    <string name="dialog_color_picker_title">Color Picker</string>
-    <string name="palette_fds_title">FDS</string>
-    <string name="palette_material_title">Material</string>
-    <string name="palette_rgb_title">RGB</string>
-    <string name="reset_android_title">Android default</string>
-    <string name="reset_fds_title">FDS default</string>
 
 </resources>
