@@ -39,6 +39,7 @@ limitations under the License.
 	
     <color name="setting_separator">#ff484848</color>
     <color name="extension_list_item_color">#ff999999</color>
+    <color name="seekbar_dot_color">@android:color/holo_red_light</color>
 
     <!-- DSLV colors -->
     <color name="dslv_icon_dark">#ff009688</color>
@@ -70,4 +71,7 @@ limitations under the License.
     <color name="colorpick_primary_dark">@*android:color/material_blue_grey_950</color>
     <color name="colorpick_accent">@*android:color/material_deep_teal_500</color>
 	
+    <!-- Colors of the help screen -->
+    <color name="dialog_color_picker_help_background">#e0000000</color>
+    <color name="dialog_color_picker_help_summary_text_color">#b3ffffff</color>
 </resources>
