@@ -50,7 +50,6 @@ limitations under the License.
 
     <!-- Color Picker colors -->
     <drawable name="darkkat_bg_blue_grey">@*android:color/primary_material_dark</drawable>
-
     <color name="black">@*android:color/primary_material_dark</color>
     <color name="white">@android:color/white</color>
     <color name="darkkat_blue_grey">@*android:color/primary_material_dark</color>
@@ -74,10 +73,8 @@ limitations under the License.
     <color name="color_picker_color_view_drawable_boarder">#33ffffff</color>	
     <color name="secondary_text_material_dark">#B3FFFFFF</color>
     <color name="secondary_text_material_light">#8A000000</color>
-
     <color name="action_picker_fab_background">@color/theme_accent</color>
-
-    <!-- Colors of the help screen -->
-    <color name="dialog_color_picker_help_background">#e0000000</color>
-	<color name="dialog_color_picker_help_summary_text_color">#b3ffffff</color>
+    <color name="color_picker_help_screen_background">#e0000000</color>
+    <color name="color_picker_help_summary_text_color">#b3ffffff</color>
+	
 </resources>
