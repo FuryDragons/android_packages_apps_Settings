@@ -36,7 +36,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 
-import com.android.internal.util.darkkat.ImageHelper;
+import com.android.internal.util.fds.ImageHelper;
 
 import com.android.settings.R;
 
