@@ -33,7 +33,8 @@
     <string name="hardware_keys_power_key_title">Power button</string>
     <string name="hardware_keys_volume_keys_title">Volume buttons</string>
     <string name="navigation_bar_category">Navigation bar</string>
-	
+    <string name="system_animations">System animations</string>
+
 	<!--FuryDragons Customization Categories-->
 	<string name="fds_about_rom">About FuryDragons</string>
     <string name="fds_animations_title">Animation Settings</string>
@@ -89,7 +90,23 @@
     <string name="recents_anim_title">Recents Animations</string>
     <string name="recents_anim_summary">Customize the Delay of Recents window and its actions</string>
  
-
+    <!-- AOKP custom system animations -->
+    <string name="activity_open_title">Activity open animation</string>
+    <string name="activity_close_title">Activity close animation</string>
+    <string name="task_open_title">Task open animation</string>
+    <string name="task_open_behind_title">Task open behind animation</string>
+    <string name="task_close_title">Task close animation</string>
+    <string name="task_move_to_front_title">Move to front animation</string>
+    <string name="task_move_to_back_title">Move to back animation</string>
+    <string name="wallpaper_open_title">Wallpaper open animation</string>
+    <string name="wallpaper_close_title">Wallpaper close animation</string>
+    <string name="wallpaper_intra_open_title">Wallpaper intra open animation</string>
+    <string name="wallpaper_intra_close_title">Wallpaper intra close animation</string>
+    <string name="animation_duration_title">Animation duration</string>
+    <string name="title_animation_no_override">Prevent app overrides</string>
+    <string name="summary_animation_no_override">Prevent apps from overriding transitions</string>
+    <string name="animation_duration_default">Default</string>
+ 
 	<!-- Cmparts -->
 	   
 	<!-- Status bar -->

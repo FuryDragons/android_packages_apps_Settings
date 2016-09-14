@@ -126,10 +126,10 @@ public class MainSettingsLayout extends SettingsPreferenceFragment {
         String titleString[];
         titleString = new String[]{
 			    getString(R.string.fds_about_rom),
-				getString(R.string.fds_animations_title),
 			    getString(R.string.fds_button_title),
 				getString(R.string.fds_cmparts_title),
-                getString(R.string.fds_statusbar_title),};
+                getString(R.string.fds_statusbar_title),
+				getString(R.string.fds_animations_title),};
 
         return titleString;
     }
