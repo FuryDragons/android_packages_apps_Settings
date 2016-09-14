@@ -36,6 +36,7 @@
     <string name="system_animations">System animations</string>
 	<string name="toast">Toast</string>
 	<string name="listview">ListView</string>
+	<string name="icons">Icons</string>
 
 	<!--FuryDragons Customization Categories-->
 	<string name="fds_about_rom">About FuryDragons</string>
@@ -91,6 +92,10 @@
     <string name="fds_recents_animations_title">Recents</string>
     <string name="recents_anim_title">Recents Animations</string>
     <string name="recents_anim_summary">Customize the Delay of Recents window and its actions</string>
+	
+   <!-- Bluetooth status -->
+    <string name="bluetooth_battery_title">Show Bluetooth battery status</string>
+    <string name="bluetooth_battery_summary">Show battery status for the currently connected bluetooth device, if availible.</string>
  
     <!-- AOKP custom system animations -->
     <string name="activity_open_title">Activity open animation</string>
