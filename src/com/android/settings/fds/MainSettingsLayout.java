@@ -128,6 +128,7 @@ public class MainSettingsLayout  extends SettingsPreferenceFragment {
             frags[3] = new StatusBarSettings();
 			frags[4] = new AnimationSettings();
 			frags[5] = new QsPanelSettings();
+			frags[6] = new RecentsSettings();
         }
 
         @Override
@@ -155,6 +156,7 @@ public class MainSettingsLayout  extends SettingsPreferenceFragment {
                 getString(R.string.fds_statusbar_title),
 				getString(R.string.fds_animations_title),
 				getString(R.string.fds_qspanel_title),
+				getString(R.string.fds_recents_title),
                     };
         return titleString;
     }
