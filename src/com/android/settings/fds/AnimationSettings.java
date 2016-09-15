@@ -47,11 +47,13 @@ public class AnimationSettings extends SettingsPreferenceFragment implements
       private static final String WALLPAPER_INTRA_CLOSE = "wallpaper_intra_close";
       private static final String KEY_LISTVIEW_ANIMATION = "listview_animation";
       private static final String KEY_LISTVIEW_INTERPOLATOR = "listview_interpolator";
+	  private static final String KEY_TOAST_ANIMATION = "toast_animation";
 
       private static final String SCROLLINGCACHE_PREF = "pref_scrollingcache";
       private static final String SCROLLINGCACHE_PERSIST_PROP = "persist.sys.scrollingcache";
 
       private static final String SCROLLINGCACHE_DEFAULT = "2";
+	  private static final String POWER_MENU_ANIMATIONS = "power_menu_animations";
   
       ListPreference mActivityOpenPref;
       ListPreference mActivityClosePref;
@@ -69,6 +71,7 @@ public class AnimationSettings extends SettingsPreferenceFragment implements
       private ListPreference mListViewAnimation;
       private ListPreference mListViewInterpolator;
 	  private ListPreference mScrollingCachePref;
+	  private ListPreference mPowerMenuAnimations;
   
       private int[] mAnimations;
       private String[] mAnimationsStrings;
@@ -194,7 +197,14 @@ public class AnimationSettings extends SettingsPreferenceFragment implements
 	     mScrollingCachePref = (ListPreference) findPreference(SCROLLINGCACHE_PREF);
          mScrollingCachePref.setValue(SystemProperties.get(SCROLLINGCACHE_PERSIST_PROP,
                 SystemProperties.get(SCROLLINGCACHE_PERSIST_PROP, SCROLLINGCACHE_DEFAULT)));
-         mScrollingCachePref.setOnPreferenceChangeListener(this)
+         mScrollingCachePref.setOnPreferenceChangeListener(this);
+
+
+        mPowerMenuAnimations = (ListPreference) findPreference(POWER_MENU_ANIMATIONS);
+        mPowerMenuAnimations.setValue(String.valueOf(Settings.System.getInt(
+                getContentResolver(), Settings.System.POWER_MENU_ANIMATIONS, 0)));
+        mPowerMenuAnimations.setSummary(mPowerMenuAnimations.getEntry());
+        mPowerMenuAnimations.setOnPreferenceChangeListener(this);
 
     }
 
@@ -266,12 +276,18 @@ public class AnimationSettings extends SettingsPreferenceFragment implements
             if (newValue != null) {
                 SystemProperties.set(SCROLLINGCACHE_PERSIST_PROP, (String) newValue);
             }
-            return true 
+            return true;
 		 } else if (preference == mTaskOpenBehind) {
             int val = Integer.parseInt((String) newValue);
             result = Settings.System.putInt(mContentRes,
                     Settings.System.ACTIVITY_ANIMATION_CONTROLS[10], val);
-         }
+         } else if (preference == mPowerMenuAnimations) {
+            Settings.System.putInt(getContentResolver(), Settings.System.POWER_MENU_ANIMATIONS,
+                    Integer.valueOf((String) newValue));
+            mPowerMenuAnimations.setValue(String.valueOf(newValue));
+            mPowerMenuAnimations.setSummary(mPowerMenuAnimations.getEntry());
+            return true;
+		 }
           preference.setSummary(getProperSummary(preference));
 
         return false;
