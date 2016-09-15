@@ -44,6 +44,8 @@ import com.android.settingslib.SuggestionParser;
 import com.android.settingslib.drawer.DashboardCategory;
 import com.android.settingslib.drawer.Tile;
 
+import android.provider.Settings;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,12 +108,24 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.Dash
     }
 
     public List<Tile> getSuggestions() {
-        return mSuggestions;
-    }
+        if ((Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.DISABLE_SUGGESTIONS, 0) == 1)) {
+             return null;
+        } else {
+             return mSuggestions;
+        }
+}
 
     public void setCategoriesAndSuggestions(List<DashboardCategory> categories,
             List<Tile> suggestions) {
-        mSuggestions = suggestions;
+        if ((Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.DISABLE_SUGGESTIONS, 0) == 1)) {
+             mSuggestions = null;
+             recountItems();
+        } else {
+             mSuggestions = suggestions;
+             recountItems();
+        }
         mCategories = categories;
 
         // TODO: Better place for tinting?
