@@ -261,6 +261,8 @@
     <string name="network_traffic_autohide">Auto hide</string>
     <string name="network_traffic_autohide_summary">Hide the traffic monitor when there is no activity</string>
     <string name="network_traffic_autohide_threshold">Inactivity threshold</string>
+	<string name="network_traffic_hidearrow_summary">Hide arrows in traffic indicator</string>
+    <string name="network_traffic_hidearrow_title">Hide arrows</string>
 	 
 	<!-- Cmparts -->
 	   

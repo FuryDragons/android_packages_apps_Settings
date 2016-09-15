@@ -1,276 +1,189 @@
 package com.android.settings.fds;
 
-import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.preference.Preference;
-import android.util.AttributeSet;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
-import android.widget.RelativeLayout;
-import android.widget.ImageView;
-import android.widget.SeekBar;
-import android.widget.TextView;
+import android.content.ContentResolver;
+import android.content.res.Resources;
+import android.database.ContentObserver;
+import android.os.Bundle;
+import android.net.TrafficStats;
+import android.preference.EditTextPreference;
+import android.support.v7.preference.ListPreference;
+import android.support.v14.preference.SwitchPreference;
+import android.support.v7.preference.Preference;
+import android.support.v7.preference.Preference.OnPreferenceChangeListener;
+import android.support.v7.preference.PreferenceScreen;
+import android.provider.Settings;
+
 import com.android.settings.R;
+import com.android.settings.SettingsPreferenceFragment;
+import com.android.internal.logging.MetricsProto.MetricsEvent;
 
-public class SeekBarPreference extends Preference implements SeekBar.OnSeekBarChangeListener {
+import com.android.settings.fds.SeekBarPreference;
 
-    private final String TAG = getClass().getName();
+public class NetworkTrafficSettings extends SettingsPreferenceFragment
+            implements OnPreferenceChangeListener  {
 
-    private static final String ANDROIDNS = "http://schemas.android.com/apk/res/android";
-    private static final String SETTINGS = "http://schemas.android.com/apk/res/com.android.settings";
-    private static final int DEFAULT_VALUE = 50;
+    private static final String TAG = "NetworkTrafficSettings";
 
-    private int mMaxValue      = 100;
-    private int mMinValue      = 0;
-    private int mInterval      = 1;
-    private int mCurrentValue;
-    private int mDefaultValue = -1;
-    private String mUnitsLeft  = "";
-    private String mUnitsRight = "";
-    private SeekBar mSeekBar;
-    private TextView mTitle;
-    private ImageView mImagePlus;
-    private ImageView mImageMinus;
-    private Drawable mProgressThumb;
+    private static final String NETWORK_TRAFFIC_STATE = "network_traffic_state";
+    private static final String NETWORK_TRAFFIC_UNIT = "network_traffic_unit";
+    private static final String NETWORK_TRAFFIC_PERIOD = "network_traffic_period";
+    private static final String NETWORK_TRAFFIC_AUTOHIDE = "network_traffic_autohide";
+    //private static final String NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD = "network_traffic_autohide_threshold";
 
-    private TextView mStatusText;
+    private int mNetTrafficVal;
+    private int MASK_UP;
+    private int MASK_DOWN;
+    private int MASK_UNIT;
+    private int MASK_PERIOD;
 
-    public SeekBarPreference(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        initPreference(context, attrs);
-    }
+    private ListPreference mNetTrafficState;
+    private ListPreference mNetTrafficUnit;
+    private ListPreference mNetTrafficPeriod;
+    private SwitchPreference mNetTrafficAutohide;
+	private SeekBarPreference mNetTrafficAutohideThreshold;
 
-    public SeekBarPreference(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-        initPreference(context, attrs);
-    }
-
-    private void initPreference(Context context, AttributeSet attrs) {
-        setValuesFromXml(attrs);
-        mSeekBar = new SeekBar(context, attrs);
-        mSeekBar.setMax(mMaxValue - mMinValue);
-        mSeekBar.setOnSeekBarChangeListener(this);
-    }
-
-    private void setValuesFromXml(AttributeSet attrs) {
-        final TypedArray typedArray = getContext().obtainStyledAttributes(
-                attrs, R.styleable.SeekBarPreference);
-
-        mMaxValue = attrs.getAttributeIntValue(ANDROIDNS, "max", 100);
-        mMinValue = attrs.getAttributeIntValue(SETTINGS, "minimum", 0);
-	mDefaultValue = attrs.getAttributeIntValue(SETTINGS, "defaultVal", -1);
-        mUnitsLeft = getAttributeStringValue(attrs, SETTINGS, "unitsLeft", "");
-        String units = getAttributeStringValue(attrs, SETTINGS, "units", "");
-        mUnitsRight = getAttributeStringValue(attrs, SETTINGS, "unitsRight", units);
-
-        Integer id = typedArray.getResourceId(R.styleable.SeekBarPreference_unitsRight, 0);
-        if (id > 0) {
-            mUnitsRight = getContext().getResources().getString(id);
-        }
-        id = typedArray.getResourceId(R.styleable.SeekBarPreference_unitsLeft, 0);
-        if (id > 0) {
-            mUnitsLeft = getContext().getResources().getString(id);
-        }
-
-        try {
-            String newInterval = attrs.getAttributeValue(SETTINGS, "interval");
-            if(newInterval != null)
-                mInterval = Integer.parseInt(newInterval);
-        }
-        catch(Exception e) {
-            Log.e(TAG, "Invalid interval value", e);
-        }
-    }
-
-    private String getAttributeStringValue(AttributeSet attrs, String namespace, String name, String defaultValue) {
-        String value = attrs.getAttributeValue(namespace, name);
-        if(value == null)
-            value = defaultValue;
-
-        return value;
+    @Override
+    protected int getMetricsCategory() {
+        return MetricsEvent.APPLICATION;
     }
 
     @Override
-    public void onDependencyChanged(Preference dependency, boolean disableDependent) {
-        super.onDependencyChanged(dependency, disableDependent);
-        this.setShouldDisableView(true);
-        if (mTitle != null)
-            mTitle.setEnabled(!disableDependent);
-        if (mSeekBar != null)
-            mSeekBar.setEnabled(!disableDependent);
-        if (mImagePlus != null)
-            mImagePlus.setEnabled(!disableDependent);
-        if (mImageMinus != null)
-            mImageMinus.setEnabled(!disableDependent);
-    }
+    public void onCreate(Bundle icicle) {
+        super.onCreate(icicle);
+        addPreferencesFromResource(R.xml.network_traffic_settings);
+        ContentResolver resolver = getActivity().getContentResolver();
+        PreferenceScreen prefSet = getPreferenceScreen();
 
-    @Override
-    protected View onCreateView(ViewGroup parent){
-	super.onCreateView(parent);
+        loadResources();
 
-        RelativeLayout layout =  null;
-        try {
-            LayoutInflater mInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            layout = (RelativeLayout)mInflater.inflate(R.layout.seek_bar_preference, parent, false);
-            mTitle = (TextView) layout.findViewById(android.R.id.title);
-            mImagePlus = (ImageView) layout.findViewById(R.id.imagePlus);
-            mImagePlus.setOnClickListener(new View.OnClickListener() {
-                 @Override
-                 public void onClick(View view) {
-                     mSeekBar.setProgress((mCurrentValue + 1) - mMinValue);
-                 }
-             });
-             mImagePlus.setOnLongClickListener(new View.OnLongClickListener() {
-                 @Override
-                 public boolean onLongClick(View view) {
-                     mSeekBar.setProgress((mCurrentValue + 10) - mMinValue);
-                    return true;
-                }
-            });
-            mImageMinus = (ImageView) layout.findViewById(R.id.imageMinus);
-            mImageMinus.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mSeekBar.setProgress((mCurrentValue - 1) - mMinValue);
-                }
-            });
-            mImageMinus.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View view) {
-                    mSeekBar.setProgress((mCurrentValue - 10) - mMinValue);
-                    return true;
-                }
-            });
-	    mProgressThumb = mSeekBar.getThumb();
-	}
-        catch(Exception e)
-        {
-            Log.e(TAG, "Error creating seek bar preference", e);
-        }
-        return layout;
-    }
+        mNetTrafficState = (ListPreference) prefSet.findPreference(NETWORK_TRAFFIC_STATE);
+        mNetTrafficUnit = (ListPreference) prefSet.findPreference(NETWORK_TRAFFIC_UNIT);
+        mNetTrafficPeriod = (ListPreference) prefSet.findPreference(NETWORK_TRAFFIC_PERIOD);
 
-    @Override
-    public void onBindView(View view) {
-        super.onBindView(view);
-        try
-        {
-            // move our seekbar to the new view we've been given
-            ViewParent oldContainer = mSeekBar.getParent();
-            ViewGroup newContainer = (ViewGroup) view.findViewById(R.id.seekBarPrefBarContainer);
+        mNetTrafficAutohide =
+            (SwitchPreference) prefSet.findPreference(NETWORK_TRAFFIC_AUTOHIDE);
+        mNetTrafficAutohide.setChecked((Settings.System.getInt(getContentResolver(),
+                            Settings.System.NETWORK_TRAFFIC_AUTOHIDE, 0) == 1));
+        mNetTrafficAutohide.setOnPreferenceChangeListener(this);
 
-            if (oldContainer != newContainer) {
-                // remove the seekbar from the old view
-                if (oldContainer != null) {
-                    ((ViewGroup) oldContainer).removeView(mSeekBar);
-                }
-                // remove the existing seekbar (there may not be one) and add ours
-                newContainer.removeAllViews();
-                newContainer.addView(mSeekBar, ViewGroup.LayoutParams.FILL_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT);
+
+       /* mNetTrafficAutohideThreshold = (SeekBarPreference) prefSet.findPreference(NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD);
+        int netTrafficAutohideThreshold = Settings.System.getInt(resolver,
+                    Settings.System.NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD, 10);
+        mNetTrafficAutohideThreshold.setValue(netTrafficAutohideThreshold / 1);
+        mNetTrafficAutohideThreshold.setOnPreferenceChangeListener(this);*/
+
+
+        // TrafficStats will return UNSUPPORTED if the device does not support it.
+        if (TrafficStats.getTotalTxBytes() != TrafficStats.UNSUPPORTED &&
+                TrafficStats.getTotalRxBytes() != TrafficStats.UNSUPPORTED) {
+            mNetTrafficVal = Settings.System.getInt(resolver, Settings.System.NETWORK_TRAFFIC_STATE, 0);
+            int intIndex = mNetTrafficVal & (MASK_UP + MASK_DOWN);
+            intIndex = mNetTrafficState.findIndexOfValue(String.valueOf(intIndex));
+            if (intIndex <= 0) {
+                mNetTrafficUnit.setEnabled(false);
+                mNetTrafficPeriod.setEnabled(false);
+                mNetTrafficAutohide.setEnabled(false);
+				mNetTrafficAutohideThreshold.setEnabled(false);
             }
-        }
-        catch(Exception ex) {
-            Log.e(TAG, "Error binding view: " + ex.toString());
-        }
-        updateView(view);
-    }
+            mNetTrafficState.setValueIndex(intIndex >= 0 ? intIndex : 0);
+            mNetTrafficState.setSummary(mNetTrafficState.getEntry());
+            mNetTrafficState.setOnPreferenceChangeListener(this);
 
-    /**
-     * Update a SeekBarPreference view with our current state
-     * @param view
-     */
-    protected void updateView(View view) {
+            mNetTrafficUnit.setValueIndex(getBit(mNetTrafficVal, MASK_UNIT) ? 1 : 0);
+            mNetTrafficUnit.setSummary(mNetTrafficUnit.getEntry());
+            mNetTrafficUnit.setOnPreferenceChangeListener(this);
 
-        try {
-            RelativeLayout layout = (RelativeLayout)view;
-            mStatusText = (TextView)layout.findViewById(R.id.seekBarPrefValue);
-            mStatusText.setText(String.valueOf(mCurrentValue));
-            mStatusText.setMinimumWidth(30);
-            mSeekBar.setProgress(mCurrentValue - mMinValue);
-
-            TextView unitsRight = (TextView)layout.findViewById(R.id.seekBarPrefUnitsRight);
-            unitsRight.setText(mUnitsRight);
-            TextView unitsLeft = (TextView)layout.findViewById(R.id.seekBarPrefUnitsLeft);
-            unitsLeft.setText(mUnitsLeft);
-        }
-        catch(Exception e) {
-            Log.e(TAG, "Error updating seek bar preference", e);
-        }
-    }
-
-    @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        int newValue = progress + mMinValue;
-        if(newValue > mMaxValue)
-            newValue = mMaxValue;
-        else if(newValue < mMinValue)
-            newValue = mMinValue;
-        else if(mInterval != 1 && newValue % mInterval != 0)
-            newValue = Math.round(((float)newValue)/mInterval)*mInterval;
-
-        // change rejected, revert to the previous value
-        if(!callChangeListener(newValue)){
-            seekBar.setProgress(mCurrentValue - mMinValue);
-            return;
-        }
-   	// change accepted, store it
-        mCurrentValue = newValue;
-        if (mCurrentValue == mDefaultValue && mDefaultValue != -1) {
-            mStatusText.setText(R.string.default_string);
-            int redColor = getContext().getResources().getColor(R.color.seekbar_dot_color);
-            mProgressThumb.setColorFilter(redColor, PorterDuff.Mode.SRC_IN);
+            intIndex = (mNetTrafficVal & MASK_PERIOD) >>> 16;
+            intIndex = mNetTrafficPeriod.findIndexOfValue(String.valueOf(intIndex));
+            mNetTrafficPeriod.setValueIndex(intIndex >= 0 ? intIndex : 1);
+            mNetTrafficPeriod.setSummary(mNetTrafficPeriod.getEntry());
+            mNetTrafficPeriod.setOnPreferenceChangeListener(this);
         } else {
-            mStatusText.setText(String.valueOf(newValue));
-            mProgressThumb.clearColorFilter();
-        }
-        persistInt(newValue);
-    }
-
-    @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {}
-
-    @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
-        notifyChanged();
-    }
-
-    @Override
-    protected Object onGetDefaultValue(TypedArray ta, int index){
-        int defaultValue = ta.getInt(index, DEFAULT_VALUE);
-        return defaultValue;
-    }
-
-    @Override
-    protected void onSetInitialValue(boolean restoreValue, Object defaultValue) {
-        if(restoreValue) {
-            mCurrentValue = getPersistedInt(mCurrentValue);
-        }
-        else {
-            int temp = 0;
-            try {
-                temp = (Integer)defaultValue;
-            }
-            catch(Exception ex) {
-                Log.e(TAG, "Invalid default value: " + defaultValue.toString());
-            }
-            persistInt(temp);
-            mCurrentValue = temp;
+            prefSet.removePreference(findPreference(NETWORK_TRAFFIC_STATE));
+            prefSet.removePreference(findPreference(NETWORK_TRAFFIC_UNIT));
+            prefSet.removePreference(findPreference(NETWORK_TRAFFIC_PERIOD));
+            prefSet.removePreference(findPreference(NETWORK_TRAFFIC_AUTOHIDE));
+			//prefSet.removePreference(findPreference(NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD));
         }
     }
 
-    public void setValue(int value) {
-        mCurrentValue = value;
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
-    @Override
-    public void setEnabled (boolean enabled) {
-        mSeekBar.setEnabled(enabled);
-        super.setEnabled(enabled);
+    private void updateNetworkTrafficState(int mIndex) {
+        if (mIndex <= 0) {
+            mNetTrafficUnit.setEnabled(false);
+            mNetTrafficPeriod.setEnabled(false);
+            mNetTrafficAutohide.setEnabled(false);
+			//mNetTrafficAutohideThreshold.setEnabled(false);
+        } else {
+            mNetTrafficUnit.setEnabled(true);
+            mNetTrafficPeriod.setEnabled(true);
+            mNetTrafficAutohide.setEnabled(true);
+			//mNetTrafficAutohideThreshold.setEnabled(true);
+        }
+    }
+
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+        if (preference == mNetTrafficState) {
+            int intState = Integer.valueOf((String)newValue);
+            mNetTrafficVal = setBit(mNetTrafficVal, MASK_UP, getBit(intState, MASK_UP));
+            mNetTrafficVal = setBit(mNetTrafficVal, MASK_DOWN, getBit(intState, MASK_DOWN));
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.NETWORK_TRAFFIC_STATE, mNetTrafficVal);
+            int index = mNetTrafficState.findIndexOfValue((String) newValue);
+            mNetTrafficState.setSummary(mNetTrafficState.getEntries()[index]);
+            updateNetworkTrafficState(index);
+            return true;
+        } else if (preference == mNetTrafficUnit) {
+            mNetTrafficVal = setBit(mNetTrafficVal, MASK_UNIT, ((String)newValue).equals("1"));
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.NETWORK_TRAFFIC_STATE, mNetTrafficVal);
+            int index = mNetTrafficUnit.findIndexOfValue((String) newValue);
+            mNetTrafficUnit.setSummary(mNetTrafficUnit.getEntries()[index]);
+            return true;
+        } else if (preference == mNetTrafficPeriod) {
+            int intState = Integer.valueOf((String)newValue);
+            mNetTrafficVal = setBit(mNetTrafficVal, MASK_PERIOD, false) + (intState << 16);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.NETWORK_TRAFFIC_STATE, mNetTrafficVal);
+            int index = mNetTrafficPeriod.findIndexOfValue((String) newValue);
+            mNetTrafficPeriod.setSummary(mNetTrafficPeriod.getEntries()[index]);
+            return true;
+        } else if (preference == mNetTrafficAutohide) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.NETWORK_TRAFFIC_AUTOHIDE, value ? 1 : 0);
+            return true;
+        } /*else if (preference == mNetTrafficAutohideThreshold) {
+            int threshold = (Integer) newValue;
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD, threshold * 1);
+            return true;
+		}*/
+        return false;
+    }
+
+    private void loadResources() {
+        Resources resources = getActivity().getResources();
+        MASK_UP = resources.getInteger(R.integer.maskUp);
+        MASK_DOWN = resources.getInteger(R.integer.maskDown);
+        MASK_UNIT = resources.getInteger(R.integer.maskUnit);
+        MASK_PERIOD = resources.getInteger(R.integer.maskPeriod);
+    }
+
+    // intMask should only have the desired bit(s) set
+    private int setBit(int intNumber, int intMask, boolean blnState) {
+        if (blnState) {
+            return (intNumber | intMask);
+        }
+        return (intNumber & ~intMask);
+    }
+
+    private boolean getBit(int intNumber, int intMask) {
+        return (intNumber & intMask) == intMask;
     }
 }
