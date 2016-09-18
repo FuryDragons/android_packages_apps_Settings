@@ -81,6 +81,8 @@
 	<string name="status_bar_fds_logo_position">StatusBar FuryDragons Logo Position</string>
 	<string name="status_bar_logo_position_left">Left</string>
 	<string name="status_bar_logo_position_right">Right</string>	
+    <string name="ambient_display_show_battery_title">Battery Status</string>
+    <string name="ambient_display_show_battery_summary">Show battery indicator during pulse</string>
 	
 	<string name="show_clear_all_recents_button_title">Clear all button</string>
  	<string name="show_clear_all_recents_button_summary">Show clear all button</string>
