@@ -19,6 +19,11 @@
         xmlns:settings="http://schemas.android.com/apk/res-auto"
         android:title="@string/about_settings">
 
+        <!-- TYTAN logo -->
+        <PreferenceScreen android:key="tytan_logo"
+                android:enabled="false"
+                android:layout="@layout/tytan_logo" />
+
         <!-- System update settings - launches activity -->
         <PreferenceScreen android:key="system_update_settings"
                 android:title="@string/system_update_settings_list_item_title"
