@@ -36,4 +36,11 @@
             android:entryValues="@array/status_bar_logo_position_values"
             android:dependency="status_bar_fds_logo" />
 			
-			</PreferenceScreen>
+        <PreferenceScreen
+            android:key="clear_all_recents"
+            android:fragment="com.android.settings.fds.RecentsClearAll"
+            android:title="@string/recents_clear_all_title"
+			android:icon="@drawable/fds_recents_clear_all_icon"
+            />
+			
+</PreferenceScreen>
