@@ -48,9 +48,16 @@ limitations under the License.
     <!-- Color of the hex input divider -->
     <color name="divider">#1fffffff</color>
 
+	
+    <!-- DarkKat theme -->
+    <color name="background_darkkat_blue_grey">#ff1b1f23</color>
+	<color name="colorpick_primary">@color/theme_accent</color>
+
+    <!-- Colors of the panel view buttons -->
+    <color name="black">@android:color/black</color>
+
     <!-- Color Picker colors -->
-    <drawable name="darkkat_bg_blue_grey">@*android:color/primary_material_dark</drawable>
-    <color name="black">@*android:color/primary_material_dark</color>
+    <color name="color_picker_color_view_drawable_border">#33ffffff</color>
     <color name="white">@android:color/white</color>
     <color name="darkkat_blue_grey">@*android:color/primary_material_dark</color>
     <color name="holo_blue_light">@android:color/holo_blue_light</color>
@@ -65,6 +72,7 @@ limitations under the License.
     <color name="green">#ff00ff00</color>
     <color name="blue">#ff0000ff</color>
     <color name="purple">#ff800080</color>
+	<color name="red">#ffff0000</color>
     <color name="yellow">#ffffff00</color>
     <color name="orange">#ffffa500</color>
     <color name="colorpick_primary">@*android:color/primary_material_dark</color>
