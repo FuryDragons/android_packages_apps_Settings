@@ -22,7 +22,6 @@
     <com.android.settings.fds.PagerSlidingTabStrip
         android:id="@+id/tabs"
         app:pstsShouldExpand="true"
-        app:pstsTextAllCaps="true"
 		android:background="#00e1ff"
         android:layout_width="match_parent"
         android:layout_height="64dp" />
