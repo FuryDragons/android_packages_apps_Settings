@@ -19,6 +19,7 @@
     <color name="red">#F00</color>
     <color name="blue">#00F</color>
 
+    <color name="icon_tint_color">@*android:color/material_pixel_blue_bright</color>
     <color name="material_empty_color_light">#FFCED7DB</color>
 
     <color name="memory_used">#F00</color>
@@ -82,7 +83,7 @@
 
     <drawable name="fp_enrollment_header_landscape">#009688</drawable>
 
-    <color name="memory_normal">#ff009587</color>
+    <color name="memory_normal">@*android:color/material_pixel_blue_bright</color>
     <color name="memory_moderate">#ffF3B300</color>
     <color name="memory_low">#ffff9700</color>
     <color name="memory_critical">#ffff5621</color>
