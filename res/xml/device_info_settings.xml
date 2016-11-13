@@ -19,10 +19,10 @@
         xmlns:settings="http://schemas.android.com/apk/res-auto"
         android:title="@string/about_settings">
 
-        <!-- TYTAN logo -->
-        <PreferenceScreen android:key="tytan_logo"
+        <!-- FURYDRAGONS logo -->
+        <PreferenceScreen android:key="furydragons_logo"
                 android:enabled="false"
-                android:layout="@layout/tytan_logo" />
+                android:layout="@layout/furydragons_logo" />
 
         <!-- System update settings - launches activity -->
         <PreferenceScreen android:key="system_update_settings"

@@ -147,7 +147,7 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment implements In
         if(mMbnVersion == null){
             getPreferenceScreen().removePreference(findPreference(KEY_MBN_VERSION));
         }
-        setValueSummary(KEY_MOD_VERSION, "ro.tytan.version");
+        setValueSummary(KEY_MOD_VERSION, "ro.furydragons.version");
         findPreference(KEY_MOD_VERSION).setEnabled(true);
         setValueSummary(KEY_MOD_BUILD_DATE, "ro.build.date");
         if (!SELinux.isSELinuxEnabled()) {
