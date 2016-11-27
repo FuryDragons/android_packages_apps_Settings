@@ -2500,18 +2500,25 @@
         />
 
 	<!-- FuryDragons settings -->
-        <activity android:name="Settings$MainSettingsActivity"
+        <activity android:name="Settings$MainSettingsLayoutActivity"
                 android:label="@string/fds_title"
-                android:icon="@drawable/ic_fds">
-            <intent-filter android:priority="1">
+                android:icon="@drawable/ic_fds"
+                android:taskAffinity="">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.android.settings.SHORTCUT" />
+            </intent-filter>
+            <intent-filter android:priority="3">
                 <action android:name="com.android.settings.action.SETTINGS" />
-                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data android:name="com.android.settings.category"
                 android:value="com.android.settings.category.fds" />
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
-                android:value="com.android.settings.fds.MainSettings" />
-        </activity>
+                android:value="com.android.settings.fds.MainSettingsLayout" />
+          </activity>
+        <activity
+             android:name="com.android.settings.MainSettingsLayout"
+             android:theme="@style/AppTheme" />
 		
         <!-- Pseudo-activity used to provide an intent-filter entry point to encryption settings -->
         <activity android:name="Settings$CryptKeeperSettingsActivity"

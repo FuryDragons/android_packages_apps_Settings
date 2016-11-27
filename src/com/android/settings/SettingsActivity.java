@@ -136,6 +136,7 @@ import com.android.settingslib.drawer.DashboardCategory;
 import com.android.settingslib.drawer.SettingsDrawerActivity;
 import com.android.settingslib.drawer.Tile;
 import com.android.settings.fds.MainSettings;
+import com.android.settings.fds.MainSettingsLayout;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -359,7 +360,7 @@ public class SettingsActivity extends SettingsDrawerActivity
             WallpaperTypeSettings.class.getName(),
             VrListenerSettings.class.getName(),
             ManagedProfileSettings.class.getName(),
-			MainSettings.class.getName(),
+			MainSettingsLayout.class.getName(),
             ChooseAccountActivity.class.getName(),
             IccLockSettings.class.getName(),
             ImeiInformation.class.getName(),
@@ -576,7 +577,7 @@ public class SettingsActivity extends SettingsDrawerActivity
         mIsShowingDashboard = className.equals(Settings.class.getName())
                 || className.equals(Settings.WirelessSettings.class.getName())
                 || className.equals(Settings.DeviceSettings.class.getName())
-				|| className.equals(Settings.MainSettings.class.getName())
+				|| className.equals(MainSettingsLayout.class.getName())
                 || className.equals(Settings.PersonalSettings.class.getName())
                 || className.equals(Settings.WirelessSettings.class.getName());
 

@@ -18,4 +18,9 @@ limitations under the License.
     <!-- Action bar icons -->
     <color name="action_bar_icon_tint">@android:color/white</color>
     <color name="text_color_white">@android:color/white</color>
+	
+	<!--FuryDragons Colors -->
+	<color name="colorpick_accent">@color/theme_accent</color>
+	<color name="theme_accent">#ff009688</color>
+	<color name="fds_accent">#ff009688</color>
 </resources>
