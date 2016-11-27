@@ -13,8 +13,6 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@*android:color/primary_material_light</item>
-        <item name="colorPrimaryDark">@*android:color/primary_material_dark</item>
         <item name="colorAccent">@color/fds_accent</item>
         <item name="preferenceTheme">@style/fds_settings</item>
     </style>

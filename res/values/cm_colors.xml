@@ -21,6 +21,6 @@ limitations under the License.
 	
 	<!--FuryDragons Colors -->
 	<color name="colorpick_accent">@color/theme_accent</color>
-	<color name="theme_accent">#ff009688</color>
-	<color name="fds_accent">#ff009688</color>
+	<color name="theme_accent">#b70e33</color>
+	<color name="fds_accent">#f40247</color>
 </resources>
