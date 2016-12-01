@@ -23,7 +23,7 @@ limitations under the License.
 	<color name="colorpick_accent">@color/theme_accent</color>
 	<color name="theme_accent">#b70e33</color>
 	<color name="fds_accent">#f40247</color>
-	<color name="fds_tab_text_color">#ffffffff</color>
+	<color name="fds_tab_text_color">#ff000000</color>
 	
     <color name="navbar_edit_icon_color">#607d8b</color>
     <color name="divider">#ffe0e0e0</color>

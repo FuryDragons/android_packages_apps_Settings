@@ -40,6 +40,11 @@ import cyanogenmod.providers.CMSettings;
 public class CmPartsConfigurations extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
     private static final String TAG = "CmPartsConfigurations";
+	private static final String STATUS_BAR_QUICK_QS_PULLDOWN = "qs_quick_pulldown";
+	
+	protected Context mContext;
+	protected ContentResolver mContentRes;
+	private ListPreference mQuickPulldown;
 
     @Override
     protected int getMetricsCategory() {
@@ -51,9 +56,52 @@ public class CmPartsConfigurations extends SettingsPreferenceFragment implements
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.fds_cmparts);
+
+	
+			mContext = getActivity().getApplicationContext();
+
+        mContentRes = getActivity().getContentResolver();
+		final Resources res = getResources();
+
+		PreferenceScreen prefs = getPreferenceScreen();
+		ContentResolver resolver = getActivity().getContentResolver();
+
+	    mQuickPulldown = (ListPreference) findPreference(STATUS_BAR_QUICK_QS_PULLDOWN);
+        int quickPulldown = CMSettings.System.getInt(resolver,
+                CMSettings.System.STATUS_BAR_QUICK_QS_PULLDOWN, 1);
+        mQuickPulldown.setValue(String.valueOf(quickPulldown));
+        if (quickPulldown == 0) {
+            // quick pulldown deactivated
+            mQuickPulldown.setSummary(res.getString(R.string.status_bar_quick_qs_pulldown_off));
+        } else {
+            String direction = res.getString(quickPulldown == 2
+                    ? R.string.status_bar_quick_qs_pulldown_left
+                    : R.string.status_bar_quick_qs_pulldown_right);
+            mQuickPulldown.setSummary(
+                    res.getString(R.string.status_bar_quick_qs_pulldown_summary, direction));
+        }
+        mQuickPulldown.setOnPreferenceChangeListener(this);
     }
 
-    public boolean onPreferenceChange(Preference preference, Object newValue) {
+        public boolean onPreferenceChange(Preference preference, Object newValue) {
+		ContentResolver resolver = getActivity().getContentResolver();
+		final Resources res = getResources();
+            if (preference == mQuickPulldown) {
+            int quickPulldown = Integer.valueOf((String) newValue);
+            CMSettings.System.putInt(resolver, CMSettings.System.STATUS_BAR_QUICK_QS_PULLDOWN,
+                    quickPulldown);
+            if (quickPulldown == 0) {
+                // quick pulldown deactivated
+                mQuickPulldown.setSummary(res.getString(R.string.status_bar_quick_qs_pulldown_off));
+            } else {
+                String direction = res.getString(quickPulldown == 2
+                        ? R.string.status_bar_quick_qs_pulldown_left
+                        : R.string.status_bar_quick_qs_pulldown_right);
+                mQuickPulldown.setSummary(
+                        res.getString(R.string.status_bar_quick_qs_pulldown_summary, direction));
+            }
+            return true;
+		} 
 		return false;
     }
 
