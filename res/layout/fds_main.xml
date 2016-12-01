@@ -17,6 +17,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/main_content"
+	android:background="#00e1ff"
     android:orientation="vertical">
 
     <com.android.settings.fds.PagerSlidingTabStrip
@@ -30,6 +31,7 @@
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+		android:background="#00e1ff"
         tools:context=".MainSettings"/>
 
 </LinearLayout>

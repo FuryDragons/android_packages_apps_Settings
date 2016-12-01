@@ -15,15 +15,16 @@
 -->
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="176dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:gravity="center">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="177dp"
         android:src="@drawable/furydragons_logo"
-        android:layout_gravity="bottom"
-        android:scaleType="centerCrop"
-           />
+        android:layout_gravity="fill"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false" />
 </FrameLayout>
