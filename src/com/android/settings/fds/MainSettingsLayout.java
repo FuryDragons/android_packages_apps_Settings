@@ -106,6 +106,7 @@ public class MainSettingsLayout extends SettingsPreferenceFragment {
             super(fm);
             frags[0] = new StatusBarSettings();
             frags[1] = new CmPartsConfigurations();
+			frags[2] = new FuryDragonsAboutRom();
         }
 
         @Override
@@ -128,7 +129,8 @@ public class MainSettingsLayout extends SettingsPreferenceFragment {
         String titleString[];
         titleString = new String[]{
                 getString(R.string.fds_statusbar_title),
-                getString(R.string.fds_cmparts_title), };
+                getString(R.string.fds_cmparts_title),
+                getString(R.string.furydragons_about_rom),};
 
         return titleString;
     }

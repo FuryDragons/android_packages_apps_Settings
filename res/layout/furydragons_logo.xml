@@ -16,22 +16,14 @@
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="156dp"
+    android:layout_height="176dp"
     android:gravity="center">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/furydragons_logo_bg"
-        android:tint="?android:attr/textColorPrimary"
+        android:src="@drawable/furydragons_logo"
         android:layout_gravity="bottom"
         android:scaleType="centerCrop"
            />
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/furydragons_logo_eyes"
-        android:tint="?android:attr/colorAccent"
-        android:layout_gravity="center_horizontal"
-            />
 </FrameLayout>

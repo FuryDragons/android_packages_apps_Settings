@@ -137,5 +137,36 @@
     <!-- Status bar - double tap to sleep -->
     <string name="status_bar_double_tap_to_sleep_title">Double-tap to sleep</string>
     <string name="status_bar_double_tap_to_sleep_summary">Double-tap on the status bar to turn off the display</string>
-
+	
+		<!-- FuryDragons extra settings -->
+    <string name="furydragons_settings_header">Additional Settings</string>
+    <string name="furydragons_settings_title">Fury Dragons Settings</string>
+    <string name="furydragons_ultimate_settings">Fury Dragons Settings</string>
+	<string name="furydragons_about_rom">About FuryDragons Rom</string>
+	<string name="furydragons_about_us">About Us</string>
+	<string name="github">FuryDragons Rom Source</string>
+    <string name="github_summary">Visit Our Github To See Newest Changes</string>
+    <string name="furydragons_downloads_title">Get FuryDragons Rom</string>
+    <string name="furydragons_downloads_summary">Click Here To Get Latest FuryDragonsRom</string>
+    <string name="furydragons_website_title">FuryDragons Official Website</string>
+    <string name="website_summary">Visit Our Website For Learning Latest Changes</string>
+	<string name="about_rom">Everything You Need To Know About Rom</string>
+    <string name="about_us">Everything You Need To Know About Us</string>
+	<string name="lead_developers">Lead Developers</string>
+	<string name="nyks">Hakan Albayrak(Nyks45)</string>
+	<string name="muratrog">Murat Binboga(MuratRog)</string>
+	<string name="user_github">Github Profile</string>
+	<string name="user_github_summary">Click Here If You Want To See My Github Profile</string>
+	<string name="user_facebook">Facebook Profile</string>
+	<string name="user_facebook_summary">Click Here If You Want To See My Facebook Profile</string>
+	<string name="user_xda">XDA Pofile</string>
+	<string name="user_xda_summary">Click Here If You Want To See My XDA Profile</string>
+	<string name="user_telegram">Telegram Account</string>
+	<string name="user_telegram_summary">Click Here If You Want To Ask Or PM To Me</string>
+	<string name="status_bar_furydragons_logo_position">StatusBar FuryDragons Logo Position</string>
+	<string name="status_bar_furydragons_logo_title">StatusBar FuryDragons Logo </string>
+	<string name="status_bar_furydragons_logo_summary">FuryDragons Logo In Statusbar</string>
+	<string name="status_bar_logo_position_right">Right</string>
+	<string name="status_bar_logo_position_left">Left</string>
+	
 </resources>

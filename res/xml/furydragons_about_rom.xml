@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+     Copyright (C) 2016 The FuryDragonsRom Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="furydragons_about_rom"
+    android:title="@string/furydragons_about_rom">
+		
+	    <!-- FURYDRAGONS logo -->
+    <PreferenceScreen
+        android:key="furydragons_logo"
+        android:layout="@layout/furydragons_logo" />
+		
+	<PreferenceCategory
+        android:key="about_rom"
+        android:title="@string/about_rom" >
+		
+	<PreferenceScreen android:key="github"
+        android:title="@string/github"
+        android:summary="@string/github">
+        <intent android:action="android.intent.action.VIEW"
+            android:data="https://github.com/FuryDragons" />
+	</PreferenceScreen>
+	
+	<PreferenceScreen android:key="furydragons_downloads"
+        android:title="@string/furydragons_downloads_title"
+        android:summary="@string/furydragons_downloads_title">
+        <intent android:action="android.intent.action.VIEW"
+            android:data="https://furydragons.github.io/downloads.html" />
+	</PreferenceScreen>
+		
+    <PreferenceScreen android:key="furydragons_website"
+        android:title="@string/furydragons_website_title"
+        android:summary="@string/website_summary">
+        <intent android:action="android.intent.action.VIEW"
+            android:data="https://furydragons.github.io" />
+	</PreferenceScreen>
+
+	</PreferenceCategory>
+
+	<PreferenceCategory
+        android:key="about_us"
+        android:title="@string/about_us" >
+		
+	<PreferenceScreen
+        android:key="furydragons_about_us"
+        android:title="@string/furydragons_about_us"
+        android:fragment="com.android.settings.fds.FuryDragonsAboutUs">
+    </PreferenceScreen>
+	
+	</PreferenceCategory>
+
+</PreferenceScreen>
