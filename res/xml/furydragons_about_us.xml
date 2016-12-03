@@ -17,9 +17,9 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:key="furydragons_about_us"
-    android:title="@string/furydragons_about_us">
+    android:title="@string/fds_about_us">
 		
-	    <!-- FURYDRAGONS logo -->
+	<!-- FURYDRAGONS logo -->
     <PreferenceScreen
         android:key="furydragons_logo"
         android:layout="@layout/furydragons_logo" />

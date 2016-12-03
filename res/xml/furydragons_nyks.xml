@@ -19,17 +19,11 @@
     android:key="nyks"
     android:title="@string/nyks">
 		
-	    <!-- FURYDRAGONS logo -->
+	<!-- FURYDRAGONS logo -->
     <PreferenceScreen
         android:key="furydragons_logo"
         android:layout="@layout/furydragons_logo" />
-	<PreferenceScreen android:key="user_github"
-        android:title="@string/user_github"
-        android:summary="@string/user_github_summary">
-        <intent android:action="android.intent.action.VIEW"
-            android:data="https://github.com/Nyks45" />
-	</PreferenceScreen>
-	
+
 	<PreferenceScreen android:key="user_facebook"
         android:title="@string/user_facebook"
         android:summary="@string/user_facebook_summary">
@@ -37,11 +31,11 @@
             android:data="https://www.facebook.com/Nyks45" />
 	</PreferenceScreen>
 	
-	<PreferenceScreen android:key="user_xda"
-        android:title="@string/user_xda"
-        android:summary="@string/user_xda_summary">
+	<PreferenceScreen android:key="user_github"
+        android:title="@string/user_github"
+        android:summary="@string/user_github_summary">
         <intent android:action="android.intent.action.VIEW"
-            android:data="http://forum.xda-developers.com/member.php?u=6777525" />
+            android:data="https://github.com/Nyks45" />
 	</PreferenceScreen>
 	
 	<PreferenceScreen android:key="user_telegram"
@@ -50,4 +44,12 @@
         <intent android:action="android.intent.action.VIEW"
             android:data="https://web.telegram.org/#/im?p=@Nyks45" />
 	</PreferenceScreen>
+	
+	<PreferenceScreen android:key="user_xda"
+        android:title="@string/user_xda"
+        android:summary="@string/user_xda_summary">
+        <intent android:action="android.intent.action.VIEW"
+            android:data="http://forum.xda-developers.com/member.php?u=6777525" />
+	</PreferenceScreen>
+
 </PreferenceScreen>

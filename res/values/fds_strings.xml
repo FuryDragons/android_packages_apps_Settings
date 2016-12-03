@@ -15,24 +15,85 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-	<!--FuryDragons Configurations-->
-	 <string name="fds_title">Fury Dragons Settings</string>
-	 <string name="restart_systemui">Restart UI</string>
-	 <string name="fds_statusbar_title">StatusBar</string>
-	 <string name="fds_cmparts_title">Cmparts Configurations</string>
-	 
+	<!--FuryDragons-->
+	<string name="fds_title">Fury Dragons Settings</string>
 
-    <!-- Button settings -->
+	<!--FuryDragons Preference Categories-->
+	<string name="about_us">Everything You Need To Know About Us</string>
+	<string name="about_rom">Everything You Need To Know About Rom</string>
+	<string name="fds_buttons">CmParts Button Settings</string>
+	<string name="fds_statusbar">CmParts StatusBar Settings</string>
+	<string name="lead_developers">Lead Developers</string>
+	<string name="hardware_keys_appswitch_key_title">Recents button</string>
+    <string name="hardware_keys_assist_key_title">Search button</string>
+	<string name="hardware_keys_back_key_title">Back button</string>
+	<string name="hardware_keys_camera_key_title">Camera button</string>
+    <string name="hardware_keys_home_key_title">Home button</string>
+    <string name="hardware_keys_menu_key_title">Menu button</string>
+    <string name="hardware_keys_power_key_title">Power button</string>
+    <string name="hardware_keys_volume_keys_title">Volume buttons</string>
+    <string name="navigation_bar_category">Navigation bar</string>
+	
+	<!--FuryDragons Customization Categories-->
+	<string name="fds_about_rom">About FuryDragons</string>
+	<string name="fds_cmparts_title">Cmparts Configurations</string>
+	<string name="fds_statusbar_title">StatusBar</string>
+
+	<!--FuryDragons Actions-->
+	<string name="restart_systemui">Restart UI</string>
+	
+	<!-- FuryDragons About -->
+	<string name="fds_about_us">About Us</string>
+	<string name="furydragons_about_us_title">Who Are The Contributors</string>
+	<string name="furydragons_about_us_summary">Click Here If You Want To Meet With Us</string>
+	<string name="furydragons_downloads_title">Get FuryDragons Rom</string>
+    <string name="furydragons_downloads_summary">Click Here To Get Latest FuryDragonsRom</string>
+	<string name="furydragons_github_title">FuryDragons Rom Source</string>
+    <string name="furydragons_github_summary">Visit Our Github To See Newest Changes</string>
+    <string name="furydragons_website_title">FuryDragons Official Website</string>
+    <string name="furydragons_website_summary">Visit Our Website For Learning Latest Changes</string>
+	<string name="muratrog">Murat Binboga(MuratRog)</string>
+	<string name="nyks">Hakan Albayrak(Nyks45)</string>
+	<string name="user_facebook">Facebook Profile</string>
+	<string name="user_facebook_summary">Click Here If You Want To See My Facebook Profile</string>
+	<string name="user_github">Github Profile</string>
+	<string name="user_github_summary">Click Here If You Want To See My Github Profile</string>
+	<string name="user_telegram">Telegram Account</string>
+	<string name="user_telegram_summary">Click Here If You Want To Ask Or PM To Me</string>
+	<string name="user_xda">XDA Pofile</string>
+	<string name="user_xda_summary">Click Here If You Want To See My XDA Profile</string>
+	
+	<!-- FuryDragons extra settings -->
+	
+	<!-- Status bar -->
+	<string name="status_bar_furydragons_logo_title">StatusBar FuryDragons Logo </string>
+	<string name="status_bar_furydragons_logo_summary">FuryDragons Logo In Statusbar</string>
+	<string name="status_bar_furydragons_logo_position">StatusBar FuryDragons Logo Position</string>
+	<string name="status_bar_logo_position_left">Left</string>
+	<string name="status_bar_logo_position_right">Right</string>	
+
+	<!-- Cmparts -->
+	   
+	<!-- Status bar -->
+   	<string name="status_bar_double_tap_to_sleep_title">Double-tap to sleep</string>
+    <string name="status_bar_double_tap_to_sleep_summary">Double-tap on the status bar to turn off the display</string>
+	<string name="status_bar_icons_title">Status bar icons</string>
+    <string name="status_bar_icons_summary">Control which status bar icons are shown</string>
+	<string name="status_bar_notif_count_title">Show notification count</string>
+    <string name="status_bar_notif_count_summary">Display the number of pending notifications</string>
+    <string name="status_bar_toggle_brightness">Brightness control</string>
+    <string name="status_bar_toggle_brightness_summary">Adjust brightness by sliding across the status bar</string>
+    <string name="status_bar_quick_qs_pulldown_title">Quick pulldown</string>
+    <string name="status_bar_quick_qs_pulldown_summary">%1$s edge of the status bar pulls down Quick Settings</string>
+    <string name="status_bar_quick_qs_pulldown_summary_left">Left</string>
+    <string name="status_bar_quick_qs_pulldown_summary_right">Right</string>
+    <string name="status_bar_quick_qs_pulldown_off">Off</string>
+    <string name="status_bar_quick_qs_pulldown_left">Left</string>
+    <string name="status_bar_quick_qs_pulldown_right">Right</string>
+	
+	<!-- Button settings -->
     <string name="button_pref_title">Buttons</string>
 	<string name="button_settings">Buttons</string>
-    <string name="hardware_keys_power_key_title">Power button</string>
-    <string name="hardware_keys_home_key_title">Home button</string>
-    <string name="hardware_keys_back_key_title">Back button</string>
-    <string name="hardware_keys_menu_key_title">Menu button</string>
-    <string name="hardware_keys_assist_key_title">Search button</string>
-    <string name="hardware_keys_appswitch_key_title">Recents button</string>
-    <string name="hardware_keys_camera_key_title">Camera button</string>
-    <string name="hardware_keys_volume_keys_title">Volume buttons</string>
     <string name="hardware_keys_short_press_title">Short press action</string>
     <string name="hardware_keys_long_press_title">Long press action</string>
     <string name="hardware_keys_double_tap_title">Double tap action</string>
@@ -82,7 +143,6 @@
     <string name="disable_navkeys_summary">Enable on-screen navigation bar and disable hardware buttons</string>
 
     <!-- Navigation Bar -->
-    <string name="navigation_bar_category">Navigation bar</string>
     <string name="navigation_bar_title">Buttons and layout</string>
     <string name="navigation_bar_left_title">Left-handed mode</string>
     <string name="navigation_bar_left_summary">Place the navigation bar on the left side of the screen in landscape mode</string>
@@ -112,61 +172,4 @@
 
     <!-- Description of setting that controls gesture to open camera by double tapping the power button [CHAR LIMIT=NONE] -->
     <string name="camera_double_tap_power_gesture_desc">Quickly open camera without unlocking your screen</string>
- 
-   <!-- Status bar -->
-    <string name="status_bar_title">Status bar</string>
-    <string name="status_bar_toggle_brightness">Brightness control</string>
-    <string name="status_bar_toggle_brightness_summary">Adjust brightness by sliding across the status bar</string>
-    <string name="status_bar_notif_count_title">Show notification count</string>
-    <string name="status_bar_notif_count_summary">Display the number of pending notifications</string>
-    <string name="status_bar_quick_qs_pulldown_title">Quick pulldown</string>
-    <string name="status_bar_quick_qs_pulldown_summary">%1$s edge of the status bar pulls down Quick Settings</string>
-    <string name="status_bar_quick_qs_pulldown_summary_left">Left</string>
-    <string name="status_bar_quick_qs_pulldown_summary_right">Right</string>
-    <string name="status_bar_quick_qs_pulldown_off">Off</string>
-    <string name="status_bar_quick_qs_pulldown_left">Left</string>
-    <string name="status_bar_quick_qs_pulldown_right">Right</string>
-	
-    <!-- Status bar - icon blacklist -->
-    <string name="status_bar_icons_title">Status bar icons</string>
-    <string name="status_bar_icons_summary">Control which status bar icons are shown</string>
-
-	<string name="fds_qs">QuickSettings</string>
-	<string name="fds_statusbar">StatusBar</string>
-	
-    <!-- Status bar - double tap to sleep -->
-    <string name="status_bar_double_tap_to_sleep_title">Double-tap to sleep</string>
-    <string name="status_bar_double_tap_to_sleep_summary">Double-tap on the status bar to turn off the display</string>
-	
-		<!-- FuryDragons extra settings -->
-    <string name="furydragons_settings_header">Additional Settings</string>
-    <string name="furydragons_settings_title">Fury Dragons Settings</string>
-    <string name="furydragons_ultimate_settings">Fury Dragons Settings</string>
-	<string name="furydragons_about_rom">About FuryDragons Rom</string>
-	<string name="furydragons_about_us">About Us</string>
-	<string name="github">FuryDragons Rom Source</string>
-    <string name="github_summary">Visit Our Github To See Newest Changes</string>
-    <string name="furydragons_downloads_title">Get FuryDragons Rom</string>
-    <string name="furydragons_downloads_summary">Click Here To Get Latest FuryDragonsRom</string>
-    <string name="furydragons_website_title">FuryDragons Official Website</string>
-    <string name="website_summary">Visit Our Website For Learning Latest Changes</string>
-	<string name="about_rom">Everything You Need To Know About Rom</string>
-    <string name="about_us">Everything You Need To Know About Us</string>
-	<string name="lead_developers">Lead Developers</string>
-	<string name="nyks">Hakan Albayrak(Nyks45)</string>
-	<string name="muratrog">Murat Binboga(MuratRog)</string>
-	<string name="user_github">Github Profile</string>
-	<string name="user_github_summary">Click Here If You Want To See My Github Profile</string>
-	<string name="user_facebook">Facebook Profile</string>
-	<string name="user_facebook_summary">Click Here If You Want To See My Facebook Profile</string>
-	<string name="user_xda">XDA Pofile</string>
-	<string name="user_xda_summary">Click Here If You Want To See My XDA Profile</string>
-	<string name="user_telegram">Telegram Account</string>
-	<string name="user_telegram_summary">Click Here If You Want To Ask Or PM To Me</string>
-	<string name="status_bar_furydragons_logo_position">StatusBar FuryDragons Logo Position</string>
-	<string name="status_bar_furydragons_logo_title">StatusBar FuryDragons Logo </string>
-	<string name="status_bar_furydragons_logo_summary">FuryDragons Logo In Statusbar</string>
-	<string name="status_bar_logo_position_right">Right</string>
-	<string name="status_bar_logo_position_left">Left</string>
-	
 </resources>

@@ -17,9 +17,9 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:key="furydragons_about_rom"
-    android:title="@string/furydragons_about_rom">
+    android:title="@string/fds_about_rom">
 		
-	    <!-- FURYDRAGONS logo -->
+	<!-- FURYDRAGONS logo -->
     <PreferenceScreen
         android:key="furydragons_logo"
         android:layout="@layout/furydragons_logo" />
@@ -28,25 +28,25 @@
         android:key="about_rom"
         android:title="@string/about_rom" >
 		
+    <PreferenceScreen android:key="furydragons_website"
+        android:title="@string/furydragons_website_title"
+        android:summary="@string/furydragons_website_summary">
+        <intent android:action="android.intent.action.VIEW"
+            android:data="https://furydragons.github.io" />
+	</PreferenceScreen>
+		
 	<PreferenceScreen android:key="github"
-        android:title="@string/github"
-        android:summary="@string/github">
+        android:title="@string/furydragons_github_title"
+        android:summary="@string/furydragons_github_summary">
         <intent android:action="android.intent.action.VIEW"
             android:data="https://github.com/FuryDragons" />
 	</PreferenceScreen>
 	
 	<PreferenceScreen android:key="furydragons_downloads"
         android:title="@string/furydragons_downloads_title"
-        android:summary="@string/furydragons_downloads_title">
+        android:summary="@string/furydragons_downloads_summary">
         <intent android:action="android.intent.action.VIEW"
             android:data="https://furydragons.github.io/downloads.html" />
-	</PreferenceScreen>
-		
-    <PreferenceScreen android:key="furydragons_website"
-        android:title="@string/furydragons_website_title"
-        android:summary="@string/website_summary">
-        <intent android:action="android.intent.action.VIEW"
-            android:data="https://furydragons.github.io" />
 	</PreferenceScreen>
 
 	</PreferenceCategory>
@@ -57,7 +57,8 @@
 		
 	<PreferenceScreen
         android:key="furydragons_about_us"
-        android:title="@string/furydragons_about_us"
+        android:title="@string/furydragons_about_us_title"
+		android:summary="@string/furydragons_about_us_summary"
         android:fragment="com.android.settings.fds.FuryDragonsAboutUs">
     </PreferenceScreen>
 	

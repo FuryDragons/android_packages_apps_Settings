@@ -41,7 +41,7 @@ import com.android.settings.Utils;
 
 import cyanogenmod.providers.CMSettings;
 
-public class FuryDragonsAboutRom extends SettingsPreferenceFragment {
+public class FdsAboutRom extends SettingsPreferenceFragment {
 
     private static final String TAG = "About FuryDragons Rom";
 	

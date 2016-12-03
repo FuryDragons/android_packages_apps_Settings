@@ -38,31 +38,36 @@
         android:title="@string/status_bar_toggle_brightness"
         android:summary="@string/status_bar_toggle_brightness_summary"
         android:defaultValue="false" />
+	
+	<cyanogenmod.preference.CMSystemSettingSwitchPreference
+        android:key="double_tap_sleep_gesture"
+        android:title="@string/status_bar_double_tap_to_sleep_title"
+        android:summary="@string/status_bar_double_tap_to_sleep_summary"
+        android:defaultValue="true" />
 		
-    <ListPreference
-       	android:key="qs_quick_pulldown"
-        android:title="@string/status_bar_quick_qs_pulldown_title"
-        android:entries="@array/status_bar_quick_qs_pulldown_entries"
-        android:entryValues="@array/status_bar_quick_qs_pulldown_values" />
-
     <cyanogenmod.preference.CMSystemSettingSwitchPreference
         android:key="status_bar_notif_count"
         android:title="@string/status_bar_notif_count_title"
         android:summary="@string/status_bar_notif_count_summary"
         android:defaultValue="false" />
 		
-	<cyanogenmod.preference.CMSystemSettingSwitchPreference
-        android:key="double_tap_sleep_gesture"
-        android:title="@string/status_bar_double_tap_to_sleep_title"
-        android:summary="@string/status_bar_double_tap_to_sleep_summary"
-        android:defaultValue="true" />
-	    </PreferenceCategory>
+    <ListPreference
+       	android:key="qs_quick_pulldown"
+        android:title="@string/status_bar_quick_qs_pulldown_title"
+        android:entries="@array/status_bar_quick_qs_pulldown_entries"
+        android:entryValues="@array/status_bar_quick_qs_pulldown_values" />
+		
+	</PreferenceCategory>
+	
+	<PreferenceCategory
+        android:key="buttons"
+        android:title="@string/fds_buttons" >
 		
     <PreferenceScreen
             android:key="button_settings"
             android:title="@string/button_settings"
             android:fragment="com.android.settings.fds.input.ButtonSettings" 
-            android:icon="@drawable/ic_fds"
-            />
+            android:icon="@drawable/ic_fds" />
+		</PreferenceCategory>
 			
 	</PreferenceScreen> 

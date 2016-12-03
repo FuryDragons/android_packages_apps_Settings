@@ -98,9 +98,9 @@ public class MainSettingsLayout extends SettingsPreferenceFragment {
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
-            frags[0] = new StatusBarSettings();
+			frags[0] = new FdsAboutRom();
             frags[1] = new CmPartsConfigurations();
-			frags[2] = new FuryDragonsAboutRom();
+            frags[2] = new StatusBarSettings();
         }
 
         @Override
@@ -122,9 +122,9 @@ public class MainSettingsLayout extends SettingsPreferenceFragment {
     private String[] getTitles() {
         String titleString[];
         titleString = new String[]{
-                getString(R.string.fds_statusbar_title),
-                getString(R.string.fds_cmparts_title),
-                getString(R.string.furydragons_about_rom),};
+			    getString(R.string.fds_about_rom),
+				getString(R.string.fds_cmparts_title),
+                getString(R.string.fds_statusbar_title),};
 
         return titleString;
     }
