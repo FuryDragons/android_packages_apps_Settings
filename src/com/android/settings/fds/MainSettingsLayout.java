@@ -37,6 +37,7 @@ import com.android.internal.logging.MetricsProto.MetricsEvent;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
+import com.android.settings.fds.input.ButtonSettings;
 
 
 public class MainSettingsLayout extends SettingsPreferenceFragment {
@@ -99,8 +100,9 @@ public class MainSettingsLayout extends SettingsPreferenceFragment {
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
 			frags[0] = new FdsAboutRom();
-            frags[1] = new CmPartsConfigurations();
-            frags[2] = new StatusBarSettings();
+            frags[1] = new ButtonSettings();
+            frags[2] = new CmPartsStatusBar();
+            frags[3] = new StatusBarSettings();
         }
 
         @Override
@@ -123,6 +125,7 @@ public class MainSettingsLayout extends SettingsPreferenceFragment {
         String titleString[];
         titleString = new String[]{
 			    getString(R.string.fds_about_rom),
+			    getString(R.string.fds_button_title),
 				getString(R.string.fds_cmparts_title),
                 getString(R.string.fds_statusbar_title),};
 

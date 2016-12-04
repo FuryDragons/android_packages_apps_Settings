@@ -21,10 +21,8 @@
 
     <com.android.settings.fds.PagerSlidingTabStrip
         android:id="@+id/tabs"
-        app:pstsShouldExpand="true"
-		android:background="#046487"
         android:layout_width="match_parent"
-        android:layout_height="35dp" />
+        android:layout_height="48dp" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"

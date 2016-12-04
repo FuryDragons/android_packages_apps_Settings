@@ -58,16 +58,5 @@
         android:entryValues="@array/status_bar_quick_qs_pulldown_values" />
 		
 	</PreferenceCategory>
-	
-	<PreferenceCategory
-        android:key="buttons"
-        android:title="@string/fds_buttons" >
-		
-    <PreferenceScreen
-            android:key="button_settings"
-            android:title="@string/button_settings"
-            android:fragment="com.android.settings.fds.input.ButtonSettings" 
-            android:icon="@drawable/ic_fds" />
-		</PreferenceCategory>
 			
 	</PreferenceScreen> 

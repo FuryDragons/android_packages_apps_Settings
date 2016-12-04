@@ -37,9 +37,9 @@ import com.android.settings.Utils;
 
 import cyanogenmod.providers.CMSettings;
 
-public class CmPartsConfigurations extends SettingsPreferenceFragment implements
+public class CmPartsStatusBar extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
-    private static final String TAG = "CmPartsConfigurations";
+    private static final String TAG = "CmPartsStatusBar";
 	private static final String STATUS_BAR_QUICK_QS_PULLDOWN = "qs_quick_pulldown";
 	
 	protected Context mContext;
