@@ -30,17 +30,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+import android.database.ContentObserver;
+import android.os.Handler;
+import android.support.v7.preference.PreferenceCategory;
+import android.provider.Settings.SettingNotFoundException;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
 
 import cyanogenmod.providers.CMSettings;
+import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
 public class StatusBarSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
     private static final String TAG = "StatusBarSettings";
+	private static final String KEY_FDS_LOGO_COLOR = "status_bar_fds_logo_color";
+    private static final String KEY_FDS_LOGO_STYLE = "status_bar_fds_logo_style";
 
+	
+    private ColorPickerPreference mFdsLogoColor;
+    private ListPreference mFdsLogoStyle;
+		
     @Override
     protected int getMetricsCategory() {
         return MetricsEvent.APPLICATION;
@@ -51,11 +62,52 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.fds_statusbar);
+		
+	    PreferenceScreen prefSet = getPreferenceScreen();
+		
+    mFdsLogoStyle = (ListPreference) findPreference(KEY_FDS_LOGO_STYLE);
+    int fdsLogoStyle = Settings.System.getIntForUser(getContentResolver(),
+            Settings.System.STATUS_BAR_FDS_LOGO_STYLE, 0,
+            UserHandle.USER_CURRENT);
+    mFdsLogoStyle.setValue(String.valueOf(fdsLogoStyle));
+    mFdsLogoStyle.setSummary(mFdsLogoStyle.getEntry());
+    mFdsLogoStyle.setOnPreferenceChangeListener(this);
+
+    // Fds logo color
+    mFdsLogoColor =
+        (ColorPickerPreference) prefSet.findPreference(KEY_FDS_LOGO_COLOR);
+    mFdsLogoColor.setOnPreferenceChangeListener(this);
+        int intColor = Settings.System.getInt(getContentResolver(),
+        Settings.System.STATUS_BAR_FDS_LOGO_COLOR, 0xffffffff);
+       	String hexColor = String.format("#%08x", (0xffffffff & intColor));
+    mFdsLogoColor.setSummary(hexColor);
+    mFdsLogoColor.setNewPreviewColor(intColor);
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-		return false;
+        if (preference == mFdsLogoColor) {
+            String hex = ColorPickerPreference.convertToARGB(
+                    Integer.valueOf(String.valueOf(newValue)));
+            preference.setSummary(hex);
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.STATUS_BAR_FDS_LOGO_COLOR, intHex);
+            return true;
+        } else if (preference == mFdsLogoStyle) {
+            int fdsLogoStyle = Integer.valueOf((String) newValue);
+            int index = mFdsLogoStyle.findIndexOfValue((String) newValue);
+            Settings.System.putIntForUser(
+                    getContentResolver(), Settings.System.STATUS_BAR_FDS_LOGO_STYLE, fdsLogoStyle,
+                    UserHandle.USER_CURRENT);
+            mFdsLogoStyle.setSummary(
+                    mFdsLogoStyle.getEntries()[index]);
+                return true;
+        }
+            return false;
     }
-
-
+	
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 }

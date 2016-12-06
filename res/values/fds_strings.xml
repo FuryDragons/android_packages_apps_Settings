@@ -67,9 +67,10 @@
 	<!-- FuryDragons extra settings -->
 	
 	<!-- Status bar -->
-	<string name="status_bar_furydragons_logo_title">StatusBar FuryDragons Logo </string>
-	<string name="status_bar_furydragons_logo_summary">FuryDragons Logo In Statusbar</string>
-	<string name="status_bar_furydragons_logo_position">StatusBar FuryDragons Logo Position</string>
+	<string name="status_bar_fds_logo_title">StatusBar FuryDragons Logo </string>
+	<string name="status_bar_fds_logo_summary">FuryDragons Logo In Statusbar</string>
+	<string name="status_bar_fds_logo_color">FuryDragons Logo Color</string>
+	<string name="status_bar_fds_logo_position">StatusBar FuryDragons Logo Position</string>
 	<string name="status_bar_logo_position_left">Left</string>
 	<string name="status_bar_logo_position_right">Right</string>	
 
