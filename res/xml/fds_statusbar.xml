@@ -40,7 +40,12 @@
             android:key="clear_all_recents"
             android:fragment="com.android.settings.fds.RecentsClearAll"
             android:title="@string/recents_clear_all_title"
-			android:icon="@drawable/fds_recents_clear_all_icon"
-            />
+			android:icon="@drawable/fds_recents_clear_all_icon" />
+
+		<com.android.settings.fds.Preferences.SystemSettingSwitchPreference
+            android:key="double_tap_sleep_gesture"
+            android:title="@string/status_bar_double_tap_to_sleep_title"
+            android:summary="@string/status_bar_double_tap_to_sleep_summary"
+            android:defaultValue="true" />		
 			
 </PreferenceScreen>
