@@ -36,6 +36,7 @@
 	
 	<!--FuryDragons Customization Categories-->
 	<string name="fds_about_rom">About FuryDragons</string>
+    <string name="fds_animations_title">Animation Settings</string>
     <string name="fds_button_title">Cmparts Buttons</string>
 	<string name="fds_cmparts_title">Cmparts StatusBar</string>
 	<string name="fds_statusbar_title">StatusBar</string>
