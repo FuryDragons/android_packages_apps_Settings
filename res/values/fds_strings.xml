@@ -37,6 +37,7 @@
 	<string name="toast">Toast</string>
 	<string name="listview">ListView</string>
 	<string name="icons">Icons</string>
+	<string name="powermenu">Power Menu</string>
 
 	<!--FuryDragons Customization Categories-->
 	<string name="fds_about_rom">About FuryDragons</string>

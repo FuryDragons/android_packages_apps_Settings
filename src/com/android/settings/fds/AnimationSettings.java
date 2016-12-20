@@ -3,7 +3,6 @@ package com.android.settings.fds;
 import android.app.Activity;
 import android.content.Context;
 import android.content.ContentResolver;
-import android.provider.Settings;
 import android.os.Bundle;
 import android.os.SystemProperties;
 import android.support.v7.preference.ListPreference;
@@ -15,21 +14,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+import android.provider.Settings;
 
-import com.android.internal.logging.MetricsProto.MetricsEvent;
-
-import com.android.internal.util.fds.AwesomeAnimationHelper;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
+
+import com.android.internal.util.fds.AwesomeAnimationHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
-import cyanogenmod.providers.CMSettings;
+import com.android.internal.logging.MetricsProto.MetricsEvent;
+
 public class AnimationSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
@@ -48,12 +48,11 @@ public class AnimationSettings extends SettingsPreferenceFragment implements
       private static final String KEY_LISTVIEW_ANIMATION = "listview_animation";
       private static final String KEY_LISTVIEW_INTERPOLATOR = "listview_interpolator";
 	  private static final String KEY_TOAST_ANIMATION = "toast_animation";
+	  private static final String POWER_MENU_ANIMATIONS = "power_menu_animations";
 
       private static final String SCROLLINGCACHE_PREF = "pref_scrollingcache";
       private static final String SCROLLINGCACHE_PERSIST_PROP = "persist.sys.scrollingcache";
-
-      private static final String SCROLLINGCACHE_DEFAULT = "2";
-	  private static final String POWER_MENU_ANIMATIONS = "power_menu_animations";
+      private static final String SCROLLINGCACHE_DEFAULT = "2";	  
   
       ListPreference mActivityOpenPref;
       ListPreference mActivityClosePref;
@@ -321,11 +320,6 @@ public class AnimationSettings extends SettingsPreferenceFragment implements
 
         int mNum = Settings.System.getInt(mContentRes, mString, 0);
         return mAnimationsStrings[mNum];
-    }
-
-    @Override
-    protected int getMetricsCategory() {
-        return MetricsEvent.APPLICATION;
     }
 
 }
