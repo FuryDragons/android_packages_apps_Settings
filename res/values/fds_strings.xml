@@ -105,6 +105,10 @@
    <!-- Disabling immersive mode messages -->
    <string name="disable_immersive_message_title">Disable Immersive Mode Messages</string>
    <string name="disable_immersive_message_summary">This will hide all Immersive Mode Messages</string>
+   
+    <!-- Double tap to sleep on lockscreen -->
+    <string name="double_tap_sleep_anywhere_title">DT2S on Lockscreen</string>
+    <string name="double_tap_sleep_anywhere_summary">Double tap lockscreen to put the device to sleep</string>
  
     <!-- AOKP custom system animations -->
     <string name="activity_open_title">Activity open animation</string>

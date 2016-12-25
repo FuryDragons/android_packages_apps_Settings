@@ -17,5 +17,11 @@
         <item name="preferenceTheme">@style/fds_settings</item>
     </style>
     <style name="fds_settings" parent="Theme.SettingsBase"></style>
+	
+    <style name="TextAppearance.PagerTabsSystemSettings" parent="@android:style/TextAppearance.DeviceDefault.Small">
+         <item name="android:fontFamily">sans-serif-light</item>
+         <item name="android:textAllCaps">true</item>
+         <item name="android:textStyle">bold</item>
+	</style>
 
 </resources>
