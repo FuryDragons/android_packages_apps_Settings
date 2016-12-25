@@ -11,6 +11,9 @@
 */
 package com.android.settings.fds;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.ContentResolver;
 import android.os.Bundle;
 import android.os.SystemProperties;
 import android.os.UserHandle;
@@ -21,6 +24,7 @@ import android.support.v14.preference.SwitchPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.Preference.OnPreferenceChangeListener;
 import com.android.internal.logging.MetricsProto.MetricsEvent;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +44,8 @@ private static final String PREF_TILE_ANIM_INTERPOLATOR = "qs_tile_animation_int
 	private ListPreference mTileAnimationStyle;
     private ListPreference mTileAnimationDuration;
 	private ListPreference mTileAnimationInterpolator;
+	protected ContentResolver mContentRes;
+	protected Context mContext;
 
     @Override
     protected int getMetricsCategory() {
@@ -84,7 +90,7 @@ private static final String PREF_TILE_ANIM_INTERPOLATOR = "qs_tile_animation_int
 		mTileAnimationInterpolator.setOnPreferenceChangeListener(this);
     }
 
-    public boolean onPreferenceChange(Preference preference, Object objValue) {if (preference == mTileAnimationStyle) {
+    public boolean onPreferenceChange(Preference preference, Object newValue) {if (preference == mTileAnimationStyle) {
             int tileAnimationStyle = Integer.valueOf((String) newValue);
             Settings.System.putIntForUser(getContentResolver(), Settings.System.ANIM_TILE_STYLE,
                     tileAnimationStyle, UserHandle.USER_CURRENT);
@@ -104,7 +110,6 @@ private static final String PREF_TILE_ANIM_INTERPOLATOR = "qs_tile_animation_int
             updateTileAnimationInterpolatorSummary(tileAnimationInterpolator);
             return true;
         }
-        preference.setSummary(getProperSummary(preference));
 		return false;
     }
 

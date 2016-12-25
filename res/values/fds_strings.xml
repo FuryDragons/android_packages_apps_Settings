@@ -431,5 +431,9 @@
     <string name="color_picker_help_do_not_show_title">Don\'t show again</string>
     <string name="color_picker_help_button_ok_title">OK</string>
     <!-- Color picker end -->
- 
+	
+    <!-- PUT ALL UNCATEGORIZED THINGS HERE -->
+
+    <string name="default_string">Default</string>
+
 </resources>
