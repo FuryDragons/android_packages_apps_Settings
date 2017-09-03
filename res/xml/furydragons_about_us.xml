@@ -27,13 +27,15 @@
 	<PreferenceCategory
         android:key="lead_developers"
         android:title="@string/lead_developers" >
-	
+
+	<!--
 	<PreferenceScreen
         android:key="muratrog"
         android:title="@string/muratrog"
         android:fragment="com.android.settings.fds.leadevelopers.FuryDragonsMuratRog">
     </PreferenceScreen>
-	
+	-->
+
 	<PreferenceScreen
         android:key="nyks"
         android:title="@string/nyks"
