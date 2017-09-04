@@ -24,6 +24,14 @@
                 android:enabled="false"
                 android:layout="@layout/furydragons_logo" />
 
+        <!-- FURYDRAGONS About Rom -->
+	<PreferenceScreen
+                android:key="furydragons_about_rom"
+                android:title="@string/fds_about_rom"
+	        android:summary="@string/furydragons_about_rom_summary"
+                android:fragment="com.android.settings.fds.FdsAboutRom">
+        </PreferenceScreen>
+
         <!-- System update settings - launches activity -->
         <PreferenceScreen android:key="system_update_settings"
                 android:title="@string/system_update_settings_list_item_title"
@@ -38,17 +46,6 @@
                     android:targetPackage="@string/additional_system_update"
                     android:targetClass="@string/additional_system_update_menu" />
         </PreferenceScreen>
-
-        <!-- LineageOS Updates -->
-        <cyanogenmod.preference.SelfRemovingPreference android:key="cm_updates"
-                android:title="@string/cmupdate_settings_title"
-                android:summary="@string/system_update_settings_list_item_summary"
-                cm:requiresOwner="true"
-                cm:requiresPackage="org.lineageos.updater">
-            <intent android:action="android.intent.action.MAIN"
-                    android:targetPackage="org.lineageos.updater"
-                    android:targetClass="org.lineageos.updater.UpdatesActivity" />
-        </cyanogenmod.preference.SelfRemovingPreference>
 
         <!-- Device status - launches activity -->
         <PreferenceScreen android:key="status_info"
@@ -86,10 +83,6 @@
         <PreferenceScreen android:key="device_feedback"
                 android:title="@string/device_feedback">
         </PreferenceScreen>
-
-        <!-- Contributors cloud -->
-        <org.cyanogenmod.internal.cmparts.CMPartsPreference
-                android:key="contributors" />
 
         <!-- Device name -->
         <Preference android:key="device_name"
